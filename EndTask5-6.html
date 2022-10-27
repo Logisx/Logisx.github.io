@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        *{
+            font-style: normal;
+            font-size: large;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        p {
+            color: white;
+            font-size:3vh;
+        }
+
+        ul {
+            color: white;
+
+        }
+
+        h1 {
+            color: rgb(235, 94, 0);
+            font-weight: bold;
+        }
+
+        body {
+            background: rgb(50, 50, 50)
+        }
+
+        .wrapper{
+            width: 95%;
+            margin: 0 auto;
+        }
+
+
+        /*MENU*/
+
+        nav{
+            background: rgb(235, 94, 0);
+        }
+
+        nav ul{
+            list-style-type: none;
+            padding: 0px;
+        }
+
+        nav a{
+            text-decoration: none;
+            text-align: center;
+            color: #fff;
+            display: block;
+            padding: 10px 0px;
+
+        }
+
+        nav a:hover{
+            background-color: rgb(255, 145, 0);
+        }
+
+        /*FLEX*/
+
+        @media screen{
+            nav ul{
+                display: flex;
+                justify-content: center;
+            }
+
+            nav li{
+                flex: 1 1 0;
+            }
+        }
+
+
+        /*grid copy*/
+        .container {
+            display: grid;
+            margin: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 25vh 25vh 30vh;
+            grid-gap: 20px;
+            grid-template-areas: 
+            "cont      cont      photo    photo    photo" 
+            "reaction  reaction  photo    photo    photo" 
+            "settings  settings  settings features features";
+        }
+
+        .photo {
+        grid-area: photo;
+        background: yellow;
+        height: 100%;
+        background-size: cover; 
+        background-position: center; 
+        }
+
+        .cont {
+        grid-area: cont;
+        padding: 10px;
+        background: rgb(31, 31, 31);
+        }
+
+        .reaction {
+        grid-area: reaction;
+        padding: 10px;
+        background: rgb(31, 31, 31);
+        }
+
+        .settings {
+        grid-area: settings;
+        padding: 10px;
+        background: rgb(31, 31, 31);
+        }
+
+        .features {
+        grid-area: features;
+        padding: 10px;
+        background: rgb(31, 31, 31);
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <div class="wrapper">
+        <nav>
+            <ul>
+                <li><a href="">About me</a></li>
+                <li><a href="">Jobs</a></li>
+                <li><a href="">Knowledge</a></li>
+                <li><a href="">Goals</a></li>
+                <li><a href="">Projects</a></li>
+                <li><a href="">Education</a></li>
+                <li><a href="">Contacts</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="photo" style="background-image: url('https://i.ytimg.com/vi/-fDqBEjfzGo/maxresdefault.jpg?9289889566')"></div>
+        <div class="cont">
+            <h1>Grid layout:</h1><br>
+            <p>A grid is a set of intersecting horizontal and vertical lines defining columns and rows.</p> 
+            <p>Elements can be placed onto the grid within these column and row lines.</p>
+        </div>
+        <div class="reaction">
+            <h1>Reaction:</h1><br>
+            
+            <p>You can organise information with the use of accurate measurement units(ex. "px") or with relative units of measurement(ex. "%").</p>
+            <p>Relative units will adjust to the screen size.</p>
+        </div>
+        <div class="settings">
+            <h1>Settings:</h1><br>
+        
+            <ul>
+                <li><p>"display: grid;" makes your class a grid layout.</p></li>
+                <li><p>You arrange lines of grid with "grid-template-columns:" and "grid-template-rows:".</p></li>
+                <li><p>"grid-gap:" arranges the size of gap between blocks.</p></li>
+                <li><p>You can organise the position of your blocks with "grid-template-areas:".</p></li>
+                <li><p>Or you can define it for each block with "grid-column/row-start/end:".</p></li>
+            </ul>    
+        </div>
+        <div class="features">
+            <h1>Features:</h1><br>
+            <ul>
+                <li>Flexible Track Sizes
+                <br>You can use the fr unit (Fraction Unit) to assign any specified pixel value to the grid.</li>
+                <li>Item Placement
+                <br>CSS grid has made it much easier to position items in the container.
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
