@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-weight: 700;
+        }
+        td input {
+            width:30px;
+            height: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 1. Calculator with text box and dropdown list</h1>
+
+    <table>
+    <tr><td><input id="firstNum"/></td>
+
+
+    <td><div><select name="operator" id="operator-1">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select></div></td>
+
+    <td><input id="secondNum"/></td>
+    
+    <td><button onclick="func()">=</button></td>
+
+    <td><p id="resultTask1">Press = mark!</p></td></tr>
+    </table>
+<!--TASK2------------------------------------------------------------------------->
+    <h1>Task 2. Calculator with text box and option buttons</h1>
+
+    <input id="firstNum2"/>
+
+
+   <div id="Task2options">
+    <input type="radio" id="+" name="operator-2" value="+">
+    <label for="+">Addition</label><br>
+    <input type="radio" id="-" name="operator-2" value="-">
+    <label for="-">Substraction</label><br>
+    <input type="radio" id="*" name="operator-2" value="*">
+    <label for="*">Multiplication</label><br>
+    <input type="radio" id="/" name="operator-2" value="/">
+    <label for="/">Distribution</label><br>
+   </div>
+
+    <input id="secondNum2"/><br><br>
+
+    <button onclick="func2()">=</button>
+
+    <p id="resultTask2">Press = mark!</p>
+    </table>
+
+
+<!---TASK3------------------------------------------------------------------------>
+
+<h1>Task 3. Calculator which increment and decrement numbers value by 1</h1>
+
+<table>
+<tr><td><button onclick="decrement()">-</button></td>
+    <td><input id="firstNum3" type="number"></td>
+    <td><button onclick="increment()">+</button></td>
+
+<td><div><select name="operator" id="operator-3">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select></div></td>
+
+<td><button onclick="decrement2()">-</button></td>
+<td><input id="secondNum3" type="number"></td>
+<td><button onclick="increment2()">+</button></td>
+
+<td><button onclick="func3()">=</button></td>
+
+<td><p id="resultTask3">Press = mark!</p></td></tr>
+</table>
+
+<!--SCRIPT------------------------------------------------------------------------>
+    <script> 
+    function func(){
+          var num1 = Number(document.getElementById("firstNum").value);
+          var num2 = Number(document.getElementById("secondNum").value);
+          var result;
+          var e = document.getElementById("operator-1");
+          var value = e.value;
+          switch (value) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2) {
+                result = num1 / num2;
+                } else {
+                result = 'Infinity';
+                }
+                break;
+            default:
+                result = 'Choose operation';
+            } 
+
+          document.getElementById("resultTask1").innerHTML = result;
+          }
+
+    function func2(){
+          var num12 = Number(document.getElementById("firstNum2").value);
+          var num22 = Number(document.getElementById("secondNum2").value);
+          var result2;
+          if (document.getElementById('+').checked) {
+            result2 = num12 + num22
+          }
+          if (document.getElementById('-').checked) {
+            result2 = num12 - num22
+          }
+          if (document.getElementById('*').checked) {
+            result2 = num12 * num22
+          }
+          if (document.getElementById('/').checked) {
+            result2 = num12 / num22
+          }
+
+
+          document.getElementById("resultTask2").innerHTML = result2;
+          }    
+
+
+    function increment() {
+          document.getElementById('firstNum3').stepUp();
+        }
+
+    function decrement() {
+          document.getElementById('firstNum3').stepDown();
+        }
+    function increment2() {
+          document.getElementById('secondNum3').stepUp();
+        }
+
+    function decrement2() {
+          document.getElementById('secondNum3').stepDown();
+        }
+    function func3(){
+          var num13 = Number(document.getElementById("firstNum3").value);
+          var num23 = Number(document.getElementById("secondNum3").value);
+          var result3;
+          var e3 = document.getElementById("operator-3");
+          var value3 = e3.value;
+          switch (value3) {
+            case '+':
+                result3 = num13 + num23;
+                break;
+            case '-':
+                result3 = num13 - num23;
+                break;
+            case '*':
+                result3 = num13 * num23;
+                break;
+            case '/':
+                if (num23) {
+                result3 = num13 / num23;
+                } else {
+                result3 = 'Infinity';
+                }
+                break;
+            default:
+                result3 = 'Choose operation';
+            } 
+
+          document.getElementById("resultTask3").innerHTML = result3;
+          }
+
+
+    /*const form = document.getElementById('form1num');
+ 
+    form.addEventListener('submit', getFormValue);
+   
+    function getFormValue(event) {
+    event.preventDefault(); 
+    const firstNum = form.querySelector('[name="firstNum"]'),
+          secondNum = form.querySelector('[name="secondNum"]'),
+          operator = form.querySelector('[name="operator"]');
+
+    const result = firstNum
+    }
+    
+    console.log(data) */
+    
+    </script>
+</body>
+</html>
