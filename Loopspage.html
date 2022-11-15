@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+    <!--TASK1---------------------------------------------------------------->
+    <h1>Task1: Factorial</h1>
+    <p>Input a number: <input type="text" id="factorialNum"></p>
+    <button onclick="funcTask1()">Answer:</button>
+    <p id="resultTask1"></p>
+
+    <!--TASK2---------------------------------------------------------------->
+    <h1>Task2: Summing</h1>
+    <p>Input a number: <input type="text" id="summingNum"></p>
+    <button onclick="funcTask2()">Answer:</button>
+    <p id="resultTask2"></p>
+
+    <!--TASK3---------------------------------------------------------------->
+    <h1>Task3: Sum of even and odd</h1>
+    <p>Input a number: <input type="text" id="Num"></p>
+    <button onclick="funcTask3()">Answer:</button>
+    <p id="resultTask3"></p>
+
+    <script>
+           
+        function funcTask1(){
+            var n = Number(document.getElementById("factorialNum").value);
+            let i = 1;
+            var fact
+            fact = 1
+            var result
+            if (n == 0){
+                result = 1
+            }else{
+                if (n < 1){
+                    result = "Unspecified"
+                } else{
+                    while(i < (n+1)){
+                        fact = fact * i
+                        i++
+                    }
+                    result = fact
+                }
+            }
+            document.getElementById("resultTask1").innerHTML = result;
+        }   
+
+
+                   
+        function funcTask2(){
+            var n = Number(document.getElementById("summingNum").value);
+            let i = 1;
+            var sum
+            sum = 0
+            var result
+
+            if (n < 1){
+                result = "Unspecified"
+            } else{
+                for(i; i < (n+1); i++){
+                    sum = sum + i
+                }
+                result = sum
+            }
+
+            document.getElementById("resultTask2").innerHTML = result;
+        }   
+
+        function funcTask3(){
+            var n = Number(document.getElementById("Num").value);
+            let i = 1;
+            var sumOdd;
+            sumOdd = 0;
+            var sumEven;
+            sumEven = 0;
+            var result;
+
+            if (n < 1){
+                result = "Unspecified";
+            } else{
+                for(i; i < (n+1); i++){
+                    if(i% 2 == 0){
+                        sumEven = sumEven + i;
+
+                    }else{
+                        sumOdd = sumOdd + i;
+                    }
+                }
+                result = "Sum of Odd: "+sumOdd+", Sum of Even: "+sumEven;
+            }
+
+            document.getElementById("resultTask3").innerHTML = result;
+        }   
+    </script>
+</body>
+</html>
