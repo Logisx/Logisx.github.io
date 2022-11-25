@@ -61,11 +61,16 @@
         }
 
         function funcTask3(){
+            let result
             var str = document.getElementById("Num").value;
-            if (palindrome(str) == 1){
-                result = str + " is palindrome."
+            if (str.length > 0){
+                if (palindrome(str) == 1){
+                    result = str + " is palindrome."
+                }else{
+                    result = str + " is NOT palindrome."
+                }
             }else{
-                result = str + " is NOT palindrome."
+                result = "No input"
             }
             document.getElementById("resultTask3").innerHTML = result;
         }   
