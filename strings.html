@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+    <!--TASK1---------------------------------------------------------------->
+    <h1>Task1: Count letters "L"</h1>
+    <p>Input: <input type="text" id="factorialNum"></p>
+    <button onclick="funcTask1()">Answer:</button>
+    <p id="resultTask1"></p>
+
+    <!--TASK2---------------------------------------------------------------->
+    <h1>Task2: Count vovels</h1>
+    <p>Input: <input type="text" id="summingNum"></p>
+    <button onclick="funcTask2()">Answer:</button>
+    <p id="resultTask2"></p>
+
+    <!--TASK3---------------------------------------------------------------->
+    <h1>Task3: Is palindrome?</h1>
+    <p>Input: <input type="text" id="Num"></p>
+    <button onclick="funcTask3()">Answer:</button>
+    <p id="resultTask3"></p>
+
+    <script>
+        function charCount(str, char) {
+            return str.split(char).length - 1;
+        
+        }
+        function funcTask1(){
+            var myString = document.getElementById("factorialNum").value;
+            let result = myString + " contains " + String(parseInt(charCount(myString, "l")) + parseInt(charCount(myString, "L"))) + "xL characters."
+            document.getElementById("resultTask1").innerHTML = result;
+        }   
+
+
+                   
+        function funcTask2(){
+            var str = document.getElementById("summingNum").value;
+            var count = 0
+            for (var i = 0; i < str.length; i++){
+                if (["a", "e", "i", "o", "u", "y", "A", "E", "I", "O", "U", "Y"].includes(str[i])){
+                    count++
+                }
+            }
+            let result = str + " contains " + (count) + " vovels."
+            document.getElementById("resultTask2").innerHTML = result;
+        }   
+
+        function palindrome(str) {
+            str = str.toLowerCase().replaceAll(" ", '');
+            for (let i = 0; i < str.length / 2; i++) {
+                if (str[i] !== str[str.length - 1 - i]) {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
+        function funcTask3(){
+            var str = document.getElementById("Num").value;
+            if (palindrome(str) == 1){
+                result = str + " is palindrome."
+            }else{
+                result = str + " is NOT palindrome."
+            }
+            document.getElementById("resultTask3").innerHTML = result;
+        }   
+    </script>
+</body>
+</html>
