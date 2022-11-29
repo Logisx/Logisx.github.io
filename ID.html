@@ -38,6 +38,14 @@
                 check = false
                 error = "id is incorrect"
             }
+            let num = Number(s.slice(0,6)+s.slice(7,10))
+            let index = (num % 31)
+            let table = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+            if ((table[index] == s.slice(10, 11))){
+            }else{
+                check = false;
+                error = "Wrong checking character"
+            }
             if (century == "+"){
                 year = "18" + year
             }else if (century == "-"){
@@ -66,6 +74,8 @@
                 check = false
                 error = "Day or month is incorrect"
             }
+
+
 
             if (Number(sexNum) % 2 == 0){
                 sex = "Female"
@@ -166,6 +176,14 @@
             if (!(s.length == 11)){
                 check = false
                 error = "id is incorrect"
+            }
+            let num = Number(s.slice(0,6)+s.slice(7,10))
+            let index = (num % 31)
+            let table = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+            if ((table[index] == s.slice(10, 11))){
+            }else{
+                check = false;
+                error = "Wrong checking character"
             }
             if (century == "+"){
                 year = "18" + year
@@ -283,11 +301,67 @@
 
         function funcTask2(){
             var s = document.getElementById("id_template").value;
-            num = Number(s.slice(0,6)+s.slice(7,10))
-            index = (num % 31)
-            table = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
-            document.getElementById("resultTask2").innerHTML = "Your ID: " + s.slice(0, 10) + table[index]; 
-        }
+
+
+            var day = s.slice(0,2);
+            let month = s.slice(2, 4);
+            let year = s.slice(4, 6);
+            let century = s.slice(6,7);
+            let sexNum = s.slice(7, 10);
+            let check = true
+            let error = ""
+
+            /*====================================================================*/
+            if (!(s.length == 10)){
+                check = false
+                error = "Id template is incorrect"
+            }
+            
+            if (century == "+"){
+                year = "18" + year
+            }else if (century == "-"){
+                year = "19"+ year
+            }else if (century == "A"){
+                year = "20"+ year
+            }
+
+            if (Number(year) > 2022){
+                check = false;
+                error = "Year is wrong"
+            }
+            if ((1 > Number(day)) ||( Number(day) > 31)){
+                check = false;
+                error = "Day is wrong"
+            }
+            if (((1 > Number(month)) || (Number(month) > 12))){
+                check = false;
+                error = "Month is wrong"
+            } 
+            if ((Number(day) >= 29) && (month == 02)){
+                check = false
+                error = "Day or month is incorrect"
+            }
+            if ((Number(day) == 31) && (!(["01", "03", "05", "07", "08", "10", "12"].includes(month)))){
+                check = false
+                error = "Day or month is incorrect"
+            }
+
+            if (Number(sexNum) % 2 == 0){
+                sex = "Female"
+            }else{sex = "Male"}
+
+            /*====================================================================*/
+
+
+            if (check == true){
+                let num = Number(s.slice(0,6)+s.slice(7,10))
+                let index = (num % 31)
+                let table = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+                document.getElementById("resultTask2").innerHTML = "Your ID: " + s.slice(0, 10) + table[index]; 
+            }else{
+                document.getElementById("resultTask2").innerHTML = error;
+            }
+        }   
     </script>
 </body>
 </html>
