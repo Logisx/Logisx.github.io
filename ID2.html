@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID</title>
+</head>
+<body>
+    <h1>Check your ID:</h1>
+    <p>Input your ID: <input type="text" id="id_to_check"></p>
+    <button onclick="funcTask1()">Check</button> <button onclick="funcPrecise()">Precise age</button>
+    <p id="resultTask1"></p>
+    <p id="sexform"></p>
+    <p id="ageform"></p>
+    <p id="agesizeform"></p>
+
+    <h1>Create an ID:</h1>
+    <p>Input your template: <input type="text" id="id_template"></p>
+    <button onclick="funcTask2()">Create</button>
+    <p id="resultTask2"></p>
+
+
+    <script>
+        function funcPrecise(){
+            var s = document.getElementById("id_to_check").value;
+            var day = s.slice(0,2);
+            let month = s.slice(2, 4);
+            let year = s.slice(4, 6);
+            let century = s.slice(6,7);
+            let sexNum = s.slice(7, 10);
+            console.log(day, month, year, sexNum)
+            let check = true
+            let error = ""
+
+            /*====================================================================*/
+            if (!(s.length == 11)){
+                check = false
+                error = "id is incorrect"
+            }
+            if (century == "+"){
+                year = "18" + year
+            }else if (century == "-"){
+                year = "19"+ year
+            }else if (century == "A"){
+                year = "20"+ year
+            }
+
+            if (Number(year) > 2022){
+                check = false;
+                error = "Year is wrong"
+            }
+            if ((1 > Number(day)) ||( Number(day) > 31)){
+                check = false;
+                error = "Day is wrong"
+            }
+            if (((1 > Number(month)) || (Number(month) > 12))){
+                check = false;
+                error = "Month is wrong"
+            } 
+            if ((Number(day) >= 29) && (month == 02)){
+                check = false
+                error = "Day or month is incorrect"
+            }
+            if ((Number(day) == 31) && (!(["01", "03", "05", "07", "08", "10", "12"].includes(month)))){
+                check = false
+                error = "Day or month is incorrect"
+            }
+
+            if (Number(sexNum) % 2 == 0){
+                sex = "Female"
+            }else{sex = "Male"}
+
+            /*====================================================================*/
+
+
+            if (check == true){
+                let valid = "Is valid: True"
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = dd + '/' + mm + '/' + yyyy;
+                let dateString = day + "/" + month + "/" + year
+                console.log(today)
+                console.log(dateString)
+                
+                var age = yyyy - Number(year)
+                var m = mm - Number(month)
+                if (m < 0 || (m === 0 && dd < (Number(day)))) {
+                    age--;}
+                
+                let Nday = Number(day);
+                let Nmonth = Number(month);
+                let Nyear = Number(year);
+                
+                /*====================================================================*/
+                function interval(date1, date2) {
+                    if (date1 > date2) { // swap
+                        var result = interval(date2, date1);
+                        result.years  = -result.years;
+                        result.months = -result.months;
+                        result.days   = -result.days;
+                        result.hours  = -result.hours;
+                        return result;
+                    }
+                    result = {
+                        years:  date2.getYear()  - date1.getYear(),
+                        months: date2.getMonth() - date1.getMonth(),
+                        days:   date2.getDate()  - date1.getDate(),
+                        hours:  date2.getHours() - date1.getHours()
+                    };
+                    if (result.hours < 0) {
+                        result.days--;
+                        result.hours += 24;
+                    }
+                    if (result.days < 0) {
+                        result.months--;
+                        // days = days left in date1's month, 
+                        //   plus days that have passed in date2's month
+                        var copy1 = new Date(date1.getTime());
+                        copy1.setDate(32);
+                        result.days = 32-date1.getDate()-copy1.getDate()+date2.getDate();
+                    }
+                    if (result.months < 0) {
+                        result.years--;
+                        result.months+=12;
+                    }
+                    return result;
+                }
+                /*====================================================================*/
+                
+                var date1 = new Date(Nyear, Nmonth - 1, Nday)
+                var date2 = new Date(yyyy, mm - 1, dd)
+                
+                var preciseAgeDict = interval(date1, date2)
+                
+                preciseAge = "(" + String(preciseAgeDict.years) + " years " + String(preciseAgeDict.months) + " months "+ String(preciseAgeDict.days) + " days" +") this is calculated " + String(today)
+                console.log(preciseAge) 
+                document.getElementById("resultTask1").innerHTML = valid;
+                document.getElementById("sexform").innerHTML = "Sex: " + sex;
+                document.getElementById("ageform").innerHTML = "Age: " + age;
+                document.getElementById("agesizeform").innerHTML = preciseAge;
+            }else{
+                let valid = "Is valid: False, " + error
+                document.getElementById("resultTask1").innerHTML = valid;
+                document.getElementById("sexform").innerHTML = ""
+                document.getElementById("ageform").innerHTML = ""
+                document.getElementById("agesizeform").innerHTML = ""
+            }
+
+
+        }
+        function funcTask1(){
+            var s = document.getElementById("id_to_check").value;
+            var day = s.slice(0,2);
+            let month = s.slice(2, 4);
+            let year = s.slice(4, 6);
+            let century = s.slice(6,7);
+            let sexNum = s.slice(7, 10);
+            console.log(day, month, year, sexNum)
+            let check = true
+            let error = ""
+
+            /*====================================================================*/
+            if (!(s.length == 11)){
+                check = false
+                error = "id is incorrect"
+            }
+            if (century == "+"){
+                year = "18" + year
+            }else if (century == "-"){
+                year = "19"+ year
+            }else if (century == "A"){
+                year = "20"+ year
+            }
+
+            if (Number(year) > 2022){
+                check = false;
+                error = "Year is wrong"
+            }
+            if ((1 > Number(day)) ||( Number(day) > 31)){
+                check = false;
+                error = "Day is wrong"
+            }
+            if (((1 > Number(month)) || (Number(month) > 12))){
+                check = false;
+                error = "Month is wrong"
+            } 
+            if ((Number(day) >= 29) && (month == 02)){
+                check = false
+                error = "Day or month is incorrect"
+            }
+            if ((Number(day) == 31) && (!(["01", "03", "05", "07", "08", "10", "12"].includes(month)))){
+                check = false
+                error = "Day or month is incorrect"
+            }
+
+            if (Number(sexNum) % 2 == 0){
+                sex = "Female"
+            }else{sex = "Male"}
+
+            /*====================================================================*/
+
+
+            if (check == true){
+                let valid = "Is valid: True"
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = dd + '/' + mm + '/' + yyyy;
+                let dateString = day + "/" + month + "/" + year
+                console.log(today)
+                console.log(dateString)
+                
+                var age = yyyy - Number(year)
+                var m = mm - Number(month)
+                if (m < 0 || (m === 0 && dd < (Number(day)))) {
+                    age--;}
+                
+                let Nday = Number(day);
+                let Nmonth = Number(month);
+                let Nyear = Number(year);
+                
+                /*====================================================================*/
+                function interval(date1, date2) {
+                    if (date1 > date2) { // swap
+                        var result = interval(date2, date1);
+                        result.years  = -result.years;
+                        result.months = -result.months;
+                        result.days   = -result.days;
+                        result.hours  = -result.hours;
+                        return result;
+                    }
+                    result = {
+                        years:  date2.getYear()  - date1.getYear(),
+                        months: date2.getMonth() - date1.getMonth(),
+                        days:   date2.getDate()  - date1.getDate(),
+                        hours:  date2.getHours() - date1.getHours()
+                    };
+                    if (result.hours < 0) {
+                        result.days--;
+                        result.hours += 24;
+                    }
+                    if (result.days < 0) {
+                        result.months--;
+                        // days = days left in date1's month, 
+                        //   plus days that have passed in date2's month
+                        var copy1 = new Date(date1.getTime());
+                        copy1.setDate(32);
+                        result.days = 32-date1.getDate()-copy1.getDate()+date2.getDate();
+                    }
+                    if (result.months < 0) {
+                        result.years--;
+                        result.months+=12;
+                    }
+                    return result;
+                }
+                /*====================================================================*/
+                
+                var date1 = new Date(Nyear, Nmonth - 1, Nday)
+                var date2 = new Date(yyyy, mm - 1, dd)
+                
+                var preciseAgeDict = interval(date1, date2)
+                
+                preciseAge = "(" + String(preciseAgeDict.years) + " years " + String(preciseAgeDict.months) + " months "+ String(preciseAgeDict.days) + " days" +") this is calculated " + String(today)
+                console.log(preciseAge) 
+                document.getElementById("resultTask1").innerHTML = valid;
+                document.getElementById("sexform").innerHTML = "Sex: " + sex;
+                document.getElementById("ageform").innerHTML = "Age: " + age;
+                document.getElementById("agesizeform").innerHTML = "";
+            }else{
+                let valid = "Is valid: False, " + error
+                document.getElementById("resultTask1").innerHTML = valid;
+                document.getElementById("sexform").innerHTML = ""
+                document.getElementById("ageform").innerHTML = ""
+                document.getElementById("agesizeform").innerHTML = ""
+            }
+
+
+        }
+
+        function funcTask2(){
+            var s = document.getElementById("id_template").value;
+            num = Number(s.slice(0,6)+s.slice(7,10))
+            index = (num % 31)
+            table = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+            document.getElementById("resultTask2").innerHTML = "Your ID: " + s.slice(0, 10) + table[index]; 
+        }
+    </script>
+</body>
+</html>
