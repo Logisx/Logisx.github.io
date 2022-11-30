@@ -29,9 +29,13 @@
             let year = s.slice(4, 6);
             let century = s.slice(6,7);
             let sexNum = s.slice(7, 10);
-            console.log(day, month, year, sexNum)
             let check = true
             let error = ""
+
+            if (s == ""){
+                document.getElementById("resultTask1").innerHTML = "No input";
+                return;
+            }
 
             /*====================================================================*/
             if (!(s.length == 11)){
@@ -171,6 +175,11 @@
             console.log(day, month, year, sexNum)
             let check = true
             let error = ""
+            
+            if (s == ""){
+                document.getElementById("resultTask1").innerHTML = "No input";
+                return;
+            }
 
             /*====================================================================*/
             if (!(s.length == 11)){
@@ -310,6 +319,11 @@
             let sexNum = s.slice(7, 10);
             let check = true
             let error = ""
+            
+            if (s == ""){
+                document.getElementById("resultTask2").innerHTML = "No input";
+                return;
+            }
 
             /*====================================================================*/
             if (!(s.length == 10)){
